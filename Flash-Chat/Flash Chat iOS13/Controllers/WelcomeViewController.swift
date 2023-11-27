@@ -14,8 +14,9 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
        
-        let fruitBasket = ["Apple", "Pear", "Orange"]
     }
+    
 
 }
