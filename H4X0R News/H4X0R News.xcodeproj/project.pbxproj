@@ -13,6 +13,8 @@
 		85DD77EA2B2DD1780033BF05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85DD77E92B2DD1780033BF05 /* Preview Assets.xcassets */; };
 		85DD77F22B2DDB590033BF05 /* RubikLines-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85DD77F12B2DDB590033BF05 /* RubikLines-Regular.ttf */; };
 		85DD77F62B2DE4FC0033BF05 /* NavBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DD77F52B2DE4FC0033BF05 /* NavBarAppearance.swift */; };
+		85DD77F82B2DEB880033BF05 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DD77F72B2DEB880033BF05 /* NetworkManager.swift */; };
+		85DD77FA2B2DEEB50033BF05 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DD77F92B2DEEB50033BF05 /* PostData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		85DD77F12B2DDB590033BF05 /* RubikLines-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RubikLines-Regular.ttf"; sourceTree = "<group>"; };
 		85DD77F32B2DDB6B0033BF05 /* H4X0R-News-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "H4X0R-News-Info.plist"; sourceTree = SOURCE_ROOT; };
 		85DD77F52B2DE4FC0033BF05 /* NavBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarAppearance.swift; sourceTree = "<group>"; };
+		85DD77F72B2DEB880033BF05 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		85DD77F92B2DEEB50033BF05 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,7 @@
 		85DD77E12B2DD1770033BF05 /* H4X0R News */ = {
 			isa = PBXGroup;
 			children = (
-				85DD77F42B2DE4A40033BF05 /* Helpers */,
+				85DD77F42B2DE4A40033BF05 /* Models */,
 				85DD77F02B2DDB320033BF05 /* fonts */,
 				85DD77F32B2DDB6B0033BF05 /* H4X0R-News-Info.plist */,
 				85DD77E22B2DD1770033BF05 /* H4X0R_NewsApp.swift */,
@@ -83,12 +87,14 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		85DD77F42B2DE4A40033BF05 /* Helpers */ = {
+		85DD77F42B2DE4A40033BF05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				85DD77F52B2DE4FC0033BF05 /* NavBarAppearance.swift */,
+				85DD77F72B2DEB880033BF05 /* NetworkManager.swift */,
+				85DD77F92B2DEEB50033BF05 /* PostData.swift */,
 			);
-			path = Helpers;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +168,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85DD77FA2B2DEEB50033BF05 /* PostData.swift in Sources */,
+				85DD77F82B2DEB880033BF05 /* NetworkManager.swift in Sources */,
 				85DD77E52B2DD1770033BF05 /* ContentView.swift in Sources */,
 				85DD77F62B2DE4FC0033BF05 /* NavBarAppearance.swift in Sources */,
 				85DD77E32B2DD1770033BF05 /* H4X0R_NewsApp.swift in Sources */,

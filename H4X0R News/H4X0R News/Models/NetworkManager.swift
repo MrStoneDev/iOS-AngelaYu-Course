@@ -1,0 +1,29 @@
+//
+//  NetworkManager.swift
+//  H4X0R News
+//
+//  Created by Mario Alvarado on 16/12/23.
+//
+
+import Foundation
+
+class NetworkManager {
+    func fetchData() {
+        if let url: URL = URL(string: "http://hn.algolia.com/api/v1/search?tags=front_page") {
+            let session: URLSession = URLSession(configuration: .default)
+            let task: URLSessionDataTask = session.dataTask(with: url) { data, response, error in
+                if error == nil {
+                    let decoder = JSONDecoder()
+                    if let safeData = data {
+                        do {
+                            let results = try decoder.decode(Results.self, from: safeData)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+}
