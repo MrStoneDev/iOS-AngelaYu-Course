@@ -12,16 +12,16 @@ struct NavBarAppearance {
         let appearance: UINavigationBarAppearance = UINavigationBarAppearance()
         
         appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-        appearance.backgroundColor = UIColor(Color.purple.opacity(0.3))
+        appearance.backgroundColor = UIColor(named: "navBarColor")
         
         appearance.largeTitleTextAttributes = [
             .font: UIFont(name: "RubikLines-Regular", size: 32)!,
-            .foregroundColor: UIColor(Color.black),
+            .foregroundColor: UIColor(Color.primary),
             .textEffect: NSAttributedString.TextEffectStyle.letterpressStyle
         ]
         appearance.titleTextAttributes = [
             .font: UIFont(name: "RubikLines-Regular", size: 24)!,
-            .foregroundColor: UIColor(Color.black),
+            .foregroundColor: UIColor(Color.primary),
             .textEffect: NSAttributedString.TextEffectStyle.letterpressStyle
         ]
         
