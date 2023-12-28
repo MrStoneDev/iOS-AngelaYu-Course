@@ -11,15 +11,20 @@ import CoreData
 
 class TodoListViewController: UITableViewController {
     
-    var itemArray = [Item]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var itemArray: [Item] = [Item]()
+    
+    // Core Data
+    lazy var context: NSManagedObjectContext = {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    }()
+    
+    // Constants
+    let cellIdentifier: String = "ToDoItemCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
-//        loadItems()
+        loadItems()
     }
     
     
@@ -31,9 +36,9 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        let item = itemArray[indexPath.row]
+        let item: Item = itemArray[indexPath.row]
         
         cell.textLabel?.text = item.title
         
@@ -58,14 +63,14 @@ class TodoListViewController: UITableViewController {
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
-        var textField = UITextField()
+        var textField: UITextField = UITextField()
         
-        let alert = UIAlertController(title: "Add New ToDoey Item", message: "", preferredStyle: .alert)
+        let alert: UIAlertController = UIAlertController(title: "Add New ToDoey Item", message: "", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add Item", style: .default) { action in
+        let action: UIAlertAction = UIAlertAction(title: "Add Item", style: .default) { action in
             // what will happen once the user clicks the Add Item button on our UIAlert
             
-            let newItem = Item(context: self.context)
+            let newItem: Item = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
             self.itemArray.append(newItem)
@@ -87,7 +92,6 @@ class TodoListViewController: UITableViewController {
     //MARK: - Model Manipulation Methods
     
     func saveItems() {
-        
         do {
             try context.save()
         } catch {
@@ -97,14 +101,13 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-//    func loadItems() {
-//        if let data = try? Data(contentsOf: dataFilePath!) {
-//            let decoder = PropertyListDecoder()
-//            do {
-//                itemArray = try decoder.decode([Item].self, from: data)
-//            } catch {
-//                print("Error decoding item array, \(error)")
-//            }
-//        }
-//    }
+    func loadItems() {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+    }
 }
