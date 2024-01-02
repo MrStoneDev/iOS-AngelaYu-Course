@@ -11,6 +11,7 @@ import CoreData
 
 class TodoListViewController: UITableViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     var itemArray: [Item] = [Item]()
     
     // Core Data
@@ -23,6 +24,8 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         
         loadItems()
     }
@@ -104,13 +107,38 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems() {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
-        
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
         do {
             itemArray = try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
+        tableView.reloadData()
+    }
+}
+
+
+//MARK: - Search Bar Controller
+
+extension TodoListViewController: UISearchBarDelegate {
+    
+    // Filtering
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        let predicate: NSPredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        let sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        if searchBar.text?.isEmpty == false {
+            request.predicate = predicate
+            request.sortDescriptors = [sortDescriptor]
+        } else {
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+        
+        loadItems(with: request)
+        
     }
 }
